@@ -61,7 +61,7 @@ const DEV_FIXTURES =
     "Developer tooling whose fixtures are Algorand's: the testnet dispenser, ASA ids and the ALGO/USDC pair."
 
 const SEED_VAULT =
-    "Seed Vault import creates Algorand accounts: the Android Seed Vault exposes only Algorand keys."
+    'Seed Vault import creates Algorand accounts: the Android Seed Vault exposes only Algorand keys.'
 
 const ARBITRARY_DATA =
     'Arbitrary-data and ARC-60 signing are Algorand standards.'

@@ -58,14 +58,14 @@ export type UseSettingsDeveloperSeedVaultResult = {
     selectedAddress: Nullable<string>
     log: string[]
     onSelectAddress: (address: string) => void
-    onCheckInstalled: () => Promise<void>
-    onBind: () => Promise<void>
-    onUnbind: () => Promise<void>
-    onAuthorize: () => Promise<void>
-    onLoadSeeds: () => Promise<void>
-    onSignBytes: () => Promise<void>
-    onSignTransaction: () => Promise<void>
-    onDeriveKeyMaterial: () => Promise<void>
+    onCheckInstalled: () => void
+    onBind: () => void
+    onUnbind: () => void
+    onAuthorize: () => void
+    onLoadSeeds: () => void
+    onSignBytes: () => void
+    onSignTransaction: () => void
+    onDeriveKeyMaterial: () => void
     onClearLog: () => void
 }
 
