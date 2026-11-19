@@ -60,6 +60,9 @@ const APPLICATIONS =
 const DEV_FIXTURES =
     "Developer tooling whose fixtures are Algorand's: the testnet dispenser, ASA ids and the ALGO/USDC pair."
 
+const SEED_VAULT =
+    "Seed Vault import creates Algorand accounts: the Android Seed Vault exposes only Algorand keys."
+
 const ARBITRARY_DATA =
     'Arbitrary-data and ARC-60 signing are Algorand standards.'
 
@@ -171,6 +174,9 @@ export const ALGORAND_ONLY_FEATURES: readonly AlgorandOnlyFeature[] = [
         'apps/mobile/src/modules/settings/screens/developer/gallery-catalog/screens.catalog.ts',
         'apps/mobile/src/modules/settings/screens/developer/gallery-catalog/shared-components.catalog.tsx',
         'apps/mobile/src/modules/settings/screens/developer/gallery-catalog/sheets.catalog.tsx',
+    ]),
+    ...entries(SEED_VAULT, [
+        'apps/mobile/src/modules/onboarding/hooks/useSeedVaultImport.ts',
     ]),
     ...entries(ARBITRARY_DATA, [
         'apps/mobile/src/modules/signing/components/ArbitraryDataSigningView/ArbitraryDataSigningDetailsView.tsx',

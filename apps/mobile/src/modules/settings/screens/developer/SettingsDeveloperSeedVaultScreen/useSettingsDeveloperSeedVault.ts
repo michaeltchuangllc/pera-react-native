@@ -82,29 +82,25 @@ export const useSettingsDeveloperSeedVault =
         }, [])
 
         const run = useCallback(
-            async (label: string, action: () => Promise<string>) => {
+            (label: string, action: () => Promise<string>) => {
                 setIsBusy(true)
-                try {
-                    append(`${label}: ${await action()}`)
-                } catch (error) {
-                    append(`${label} failed: ${toError(error).message}`)
-                } finally {
-                    setIsBusy(false)
-                }
+                void action()
+                    .then(result => append(`${label}: ${result}`))
+                    .catch((error: unknown) =>
+                        append(`${label} failed: ${toError(error).message}`),
+                    )
+                    .finally(() => setIsBusy(false))
             },
             [append],
         )
 
         const withAddress = useCallback(
-            async (
-                label: string,
-                action: (address: string) => Promise<string>,
-            ) => {
+            (label: string, action: (address: string) => Promise<string>) => {
                 if (!selectedAddress) {
                     append(`${label}: load seeds and select an account first`)
                     return
                 }
-                await run(label, () => action(selectedAddress))
+                run(label, () => action(selectedAddress))
             },
             [append, run, selectedAddress],
         )
@@ -124,8 +120,7 @@ export const useSettingsDeveloperSeedVault =
         )
 
         const onBind = useCallback(
-            () =>
-                run('Bind', async () => `service ready = ${await bind()}`),
+            () => run('Bind', async () => `service ready = ${await bind()}`),
             [run],
         )
 

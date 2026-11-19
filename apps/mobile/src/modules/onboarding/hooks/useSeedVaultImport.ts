@@ -63,8 +63,12 @@ export const useSeedVaultImport = (): UseSeedVaultImportResult => {
             })
             if (firstAccounts.length === 0) {
                 errorToast(
-                    t('onboarding.import_account_options.seed_vault_error_title'),
-                    t('onboarding.import_account_options.seed_vault_error_body'),
+                    t(
+                        'onboarding.import_account_options.seed_vault_error_title',
+                    ),
+                    t(
+                        'onboarding.import_account_options.seed_vault_error_body',
+                    ),
                 )
                 return
             }

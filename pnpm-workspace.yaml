@@ -17,11 +17,11 @@ catalog:
 
   "@algorandfoundation/algokit-utils": 9.2.2
   "@algorandfoundation/dp256": 1.1.0
-  "@algorandfoundation/keystore-core": 1.0.0-canary.5
-  "@algorandfoundation/keystore-web": 1.0.0-canary.6
+  "@algorandfoundation/keystore-core": https://github.com/mithiraj95/wallet-provider-extensions.git#pera-integration-seedvault-dist&path:/keystore/core
+  "@algorandfoundation/keystore-web": https://github.com/mithiraj95/wallet-provider-extensions.git#pera-integration-seedvault-dist&path:/keystore/web
   "@algorandfoundation/ledger-algorand-js": ^1.4.3
-  "@algorandfoundation/provider-migrations": 1.0.0-canary.1
-  "@algorandfoundation/react-native-keystore": 1.0.0-canary.21
+  "@algorandfoundation/provider-migrations": https://github.com/mithiraj95/wallet-provider-extensions.git#pera-integration-seedvault-dist&path:/migrations
+  "@algorandfoundation/react-native-keystore": https://github.com/mithiraj95/wallet-provider-extensions.git#pera-integration-seedvault-dist&path:/keystore/react-native
   "@algorandfoundation/react-native-passkey-autofill": 1.0.0-canary.29
   "@algorandfoundation/wallet-provider": 1.0.0-canary.6
   "@algorandfoundation/xhd-wallet-api": ^2.0.0-canary.1
