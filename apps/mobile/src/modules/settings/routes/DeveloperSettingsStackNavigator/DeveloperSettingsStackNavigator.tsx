@@ -28,6 +28,7 @@ import { SettingsDeveloperMigrationViewerScreen } from '../../screens/developer/
 import { SettingsDeveloperMigrationInfoScreen } from '../../screens/developer/SettingsDeveloperMigrationInfoScreen'
 import { SettingsDeveloperMigrationSimulatorScreen } from '../../screens/developer/SettingsDeveloperMigrationSimulatorScreen'
 import { SettingsDeveloperKeystoreMigrationsScreen } from '../../screens/developer/SettingsDeveloperKeystoreMigrationsScreen'
+import { SettingsDeveloperSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSeedVaultScreen'
 
 import type { GalleryCategoryId } from '@modules/settings/screens/developer/gallery-catalog'
 
@@ -45,6 +46,7 @@ export type DeveloperSettingsStackParamsList = {
     MigrationInfo: undefined
     MigrationSimulator: undefined
     KeystoreMigrations: undefined
+    SeedVault: undefined
 }
 
 const DeveloperSettingsStack =
@@ -98,6 +100,13 @@ export const DeveloperSettingsStackNavigator = () => {
                     title: 'screens.manage_cache',
                 }}
                 component={SettingsDeveloperManageCacheScreen}
+            />
+            <DeveloperSettingsStack.Screen
+                name='SeedVault'
+                options={{
+                    title: 'screens.seed_vault',
+                }}
+                component={SettingsDeveloperSeedVaultScreen}
             />
             <DeveloperSettingsStack.Screen
                 name='AppIntegrity'

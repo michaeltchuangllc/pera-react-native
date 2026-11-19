@@ -2530,6 +2530,10 @@
             "pair_ledger_title": "Pair with Ledger",
             "pair_ledger_description": "Manage your accounts via a paired Ledger device",
             "pair_ledger_unsupported_description": "Not supported by this browser or device",
+            "seed_vault_title": "Import from Seed Vault",
+            "seed_vault_description": "Add the first account of each authorized seed",
+            "seed_vault_error_title": "Seed Vault unavailable",
+            "seed_vault_error_body": "Authorize Pera in Seed Vault and try again.",
             "pera_web_title": "Recover from Legacy Web Wallet",
             "pera_web_description": "Import Algorand Wallet from Pera Web",
             "cloud_backup_title": "Recover from Cloud Backup",
@@ -2989,6 +2993,7 @@
         "debug_tools": "Debug Tools",
         "manage_cache": "Manage Cache",
         "app_integrity": "App Integrity",
+        "seed_vault": "Seed Vault",
         "messages": "Messages"
     },
     "search": {

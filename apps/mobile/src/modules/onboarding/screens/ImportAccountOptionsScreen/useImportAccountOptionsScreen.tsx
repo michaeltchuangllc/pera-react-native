@@ -52,6 +52,7 @@ import {
     type LedgerTransportOptionsContentResult,
 } from '../../components/LedgerTransportOptionsContent'
 import { useIsOnboarding } from '../../hooks/useOnboardingStore'
+import { useSeedVaultImport } from '../../hooks/useSeedVaultImport'
 import { usePrivateKeyImportChainId } from '../../hooks/usePrivateKeyImportChainId'
 import type { ImportFlowParamList } from '../../routes/types'
 import { trackChainOnboardingEvent } from '../../utils'
@@ -103,6 +104,8 @@ export const useImportAccountOptionsScreen =
         const isCloudBackupConfigured = useCloudBackupStore(state =>
             state.isConfigured(),
         )
+        const { isSeedVaultSupported, handleImportSeedVault } =
+            useSeedVaultImport()
         const privateKeyChainId = usePrivateKeyImportChainId()
         const [isOtherOptionsVisible, setIsOtherOptionsVisible] =
             useState(false)
@@ -378,6 +381,19 @@ export const useImportAccountOptionsScreen =
                             },
                             isDisabled: !isLedgerAvailable,
                         },
+                        isSeedVaultSupported && {
+                            testID: 'import_account_options_seed_vault_button',
+                            titleKey: i18nKey(
+                                'onboarding.import_account_options.seed_vault_title',
+                            ),
+                            descriptionKey: i18nKey(
+                                'onboarding.import_account_options.seed_vault_description',
+                            ),
+                            leftIcon: 'shield-check' as IconName,
+                            onPress: () => {
+                                void handleImportSeedVault()
+                            },
+                        },
                     ] satisfies (AccountOption | false)[]
                 ).filter((option): option is AccountOption => !!option),
             [
@@ -387,6 +403,8 @@ export const useImportAccountOptionsScreen =
                 isCloudBackupAvailable,
                 canUseLedger,
                 isLedgerAvailable,
+                isSeedVaultSupported,
+                handleImportSeedVault,
             ],
         )
 

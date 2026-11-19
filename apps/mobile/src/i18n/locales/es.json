@@ -2530,6 +2530,10 @@
             "pair_ledger_title": "Vincular con Ledger",
             "pair_ledger_description": "Gestiona tus cuentas con un dispositivo Ledger vinculado",
             "pair_ledger_unsupported_description": "No compatible con este navegador o dispositivo",
+            "seed_vault_title": "Importar desde Seed Vault",
+            "seed_vault_description": "Añade la primera cuenta de cada seed autorizado",
+            "seed_vault_error_title": "Seed Vault no disponible",
+            "seed_vault_error_body": "Autoriza Pera en Seed Vault e inténtalo de nuevo.",
             "pera_web_title": "Recuperar desde la wallet web antigua",
             "pera_web_description": "Importa una wallet de Algorand desde Pera Web",
             "cloud_backup_title": "Recuperar desde la copia de seguridad en la nube",
@@ -2989,6 +2993,7 @@
         "debug_tools": "Herramientas de depuración",
         "manage_cache": "Gestionar caché",
         "app_integrity": "Integridad de la app",
+        "seed_vault": "Seed Vault",
         "messages": "Mensajes"
     },
     "search": {

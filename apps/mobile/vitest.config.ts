@@ -55,6 +55,12 @@ const redirections: AliasEntry[] = [
         replacement: testUtil('victory-native-stub.tsx'),
     },
     {
+        // The Seed Vault bridge loads expo-modules-core natively; tests
+        // use a stub that reports the service as unsupported.
+        find: '@algorandfoundation/react-native-seed-vault',
+        replacement: testUtil('seed-vault-stub.ts'),
+    },
+    {
         // react-native-keyboard-controller ships untranspiled
         // sources that vitest can't parse; tests don't need real
         // keyboard tracking, so route through a passthrough stub.

@@ -47,6 +47,11 @@ export const SettingsDebugToolsScreen = () => {
                 title='Keystore Migrations'
             />
             <PWListItem
+                onPress={() => handleNavigate('SeedVault')}
+                icon='shield-check'
+                title='Seed Vault'
+            />
+            <PWListItem
                 onPress={handleOpenTestingDapp}
                 icon='globe'
                 title={t('settings.developer.debug_dapp')}

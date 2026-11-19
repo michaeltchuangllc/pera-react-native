@@ -548,6 +548,9 @@ function buildAppConfig(env) {
       // monorepo's Android build. Must run after expo-build-properties so ours wins.
       './plugins/withAndroidGradleHeap',
 
+      // Resolve the Seed Vault SDK from Maven Local.
+      './plugins/withAndroidSeedVault',
+
       // Limit *debug* builds to arm64-v8a (matches native Pera Android) so local
       // builds don't compile all four ABIs. Release keeps every ABI.
       './plugins/withAndroidAbiFilters',
