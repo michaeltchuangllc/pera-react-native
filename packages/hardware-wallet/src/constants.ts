@@ -29,3 +29,6 @@ export const DEFAULT_ONCHAIN_ACCOUNT_SCAN_GAP = 5
  * account" continues past it on demand.
  */
 export const DEFAULT_MAX_ACCOUNT_SCAN_INDEX = 32
+
+/** Hardware accounts held by the on-device Seed Vault Service; their keys are Falcon-1024, not the chain's primary scheme. */
+export const SEED_VAULT_MANUFACTURER = 'seed-vault-service'

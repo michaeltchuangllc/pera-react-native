@@ -22,6 +22,7 @@ import type { MultisigParameters } from '@perawallet/wallet-core-multisig'
 import { encodeToBase64, type Optional } from '@perawallet/wallet-core-shared'
 import { getExpectedGenesisHash } from '../blockchain'
 import {
+    decodeSignedTransaction,
     encodeSignedTransaction,
     encodeTransaction,
     encodeTransactionRaw,
@@ -124,12 +125,36 @@ export const readAlgorandTransaction = (
 const ONE_SIGNATURE =
     'An Algorand transaction takes one ed25519 signature, from its signer'
 
+const ED25519_SIGNATURE_LENGTH = 64
+
+// A Falcon-1024 signer (the Seed Vault) returns the whole signed transaction,
+// since its `pqsig` carries the public key and salt alongside the signature.
+const assembleSignedByDevice = (
+    unsigned: UnsignedTransaction,
+    transaction: PeraTransaction,
+    signed: Uint8Array,
+): SignedTransaction => {
+    const id = transaction.txID()
+    if (decodeSignedTransaction(signed).txn.txID() !== id) {
+        throw new Error('The signer returned a different transaction')
+    }
+    return { scope: unsigned.scope, id, bytes: signed }
+}
+
 const assembleSingle = (
     unsigned: UnsignedTransaction,
     { transaction, signer }: ReadTransaction,
     signatures: Signature[],
 ): SignedTransaction => {
     const [signature] = signatures
+    if (
+        signatures.length === 1 &&
+        signature.requestIndex === 0 &&
+        signature.signer === signer &&
+        signature.bytes.length !== ED25519_SIGNATURE_LENGTH
+    ) {
+        return assembleSignedByDevice(unsigned, transaction, signature.bytes)
+    }
     if (
         signatures.length !== 1 ||
         signature.requestIndex !== 0 ||

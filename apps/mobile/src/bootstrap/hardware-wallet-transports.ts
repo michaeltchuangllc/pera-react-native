@@ -13,6 +13,7 @@
 import type { HardwareWalletRegistry } from '@perawallet/wallet-extension-hardware-wallet'
 import { WithLedgerExtension } from '@perawallet/wallet-extension-ledger-react-native'
 import { WithLedgerUsbExtension } from '@perawallet/wallet-extension-ledger-react-native-usb'
+import { registerSeedVaultTransport } from './seed-vault-transport'
 
 // The app, not the provider, picks the concrete transports so that packages
 // depending on the provider never pull in the BLE/USB driver graph. Metro
@@ -22,4 +23,5 @@ export const registerHardwareWalletTransports = (
 ): void => {
     WithLedgerExtension({ hardwareWalletRegistry })
     WithLedgerUsbExtension({ hardwareWalletRegistry })
+    registerSeedVaultTransport(hardwareWalletRegistry)
 }

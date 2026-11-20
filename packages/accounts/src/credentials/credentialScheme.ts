@@ -21,6 +21,7 @@ import {
     seedSchemeOf,
     type SeedScheme,
 } from '@perawallet/wallet-core-kms'
+import { SEED_VAULT_MANUFACTURER } from '@perawallet/wallet-core-hardware-wallet'
 import { getKeystoreStore } from '@perawallet/wallet-extension-provider'
 import type { Nullable } from '@perawallet/wallet-core-shared'
 import { accountsChainAdapters } from '../chain-adapter'
@@ -60,7 +61,11 @@ export const credentialScheme = (
 
     switch (custody.kind) {
         case 'hardware': {
-            return primary
+            // The vault signs Falcon-1024, which costs the post-quantum fee premium.
+            return custody.device.manufacturer === SEED_VAULT_MANUFACTURER &&
+                chain.signing.schemes.includes('falcon-1024')
+                ? 'falcon-1024'
+                : primary
         }
         case 'multisig': {
             return chain.protocol.supportsNativeMultisig ? primary : null

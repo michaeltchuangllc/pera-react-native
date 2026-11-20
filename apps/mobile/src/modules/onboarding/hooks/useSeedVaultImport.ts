@@ -23,6 +23,7 @@ import {
     getAllAccounts,
     useSelectedAccountId,
 } from '@perawallet/wallet-core-accounts'
+import { SEED_VAULT_MANUFACTURER } from '@perawallet/wallet-core-hardware-wallet'
 import { logger } from '@perawallet/wallet-core-shared'
 import { ALGORAND_CHAIN_ID } from '@modules/algorand/chain-id'
 import { useLanguage } from '@hooks/useLanguage'
@@ -30,8 +31,6 @@ import { useToast } from '@hooks/useToast'
 import { useExitAccountFlow } from './useExitAccountFlow'
 import { requestSeedVaultPermission } from './seedVaultPermission'
 import { useShouldPlayConfetti } from './useOnboardingStore'
-
-export const SEED_VAULT_MANUFACTURER = 'seed-vault-service'
 
 const FIRST_ACCOUNT_INDEX = 0
 

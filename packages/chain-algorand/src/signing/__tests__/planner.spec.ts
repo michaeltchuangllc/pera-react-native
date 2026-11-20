@@ -312,6 +312,34 @@ describe('algorandTransactionPlanner', () => {
         ).rejects.toThrow('one per planned participant')
     })
 
+    it('takes a complete signed transaction from a device that signs the whole envelope', async () => {
+        const transaction = unsigned({ transaction: payment(addressOf(ALICE)) })
+        const [request] = algorandTransactionPlanner.plan(transaction)
+        const whole = await throughPlanner(transaction)
+
+        const signed = await algorandTransactionPlanner.assemble(transaction, [
+            { ...request, bytes: whole },
+        ])
+
+        expect(signed.bytes).toEqual(whole)
+    })
+
+    it('refuses a device-signed envelope for a different transaction', async () => {
+        const transaction = unsigned({ transaction: payment(addressOf(ALICE)) })
+        const other = await throughPlanner(
+            unsigned({ transaction: payment(addressOf(ALICE), 6n) }),
+        )
+        const [request] = algorandTransactionPlanner.plan(transaction)
+
+        await expect(
+            Promise.resolve().then(() =>
+                algorandTransactionPlanner.assemble(transaction, [
+                    { ...request, bytes: other },
+                ]),
+            ),
+        ).rejects.toThrow('different transaction')
+    })
+
     it('plans one request per multisig participant over the same bytes', () => {
         const addresses = [ALICE, BOB, CAROL].map(addressOf)
         const transaction = payment(generateMultisigAddress(1, 2, addresses))
