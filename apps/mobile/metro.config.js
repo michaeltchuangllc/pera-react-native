@@ -45,10 +45,7 @@ const webShimsRoot = path.resolve(projectRoot, '../browser/web-shims');
 
 const defaultConfig = getDefaultConfig(projectRoot);
 
-// Sibling clone linked in by pnpm overrides (see pnpm-workspace.yaml); Metro
-// only follows symlinks into watched folders.
-const providerExtensionsRoot = path.resolve(monorepoRoot, '../wallet-provider-extensions');
-const watchFolders = [monorepoRoot, providerExtensionsRoot];
+const watchFolders = [monorepoRoot];
 
 // Configure the resolver for monorepo and custom needs
 const nodeModulesPaths = [
@@ -603,23 +600,6 @@ const customResolveRequest = (context, moduleName, platform) => {
 // is a path the swap would otherwise miss, and several of them (the alias
 // branch in particular) re-enter Metro's own resolver, not this one.
 const resolveRequest = (context, moduleName, platform) => {
-    // The clone has its own node_modules (second react-native, @tanstack/store,
-    // ...). Resolve its bare imports from the app so every package is a single copy.
-    const isBare = !moduleName.startsWith('.') && !path.isAbsolute(moduleName);
-    if (
-        isBare &&
-        context.originModulePath.startsWith(providerExtensionsRoot + path.sep)
-    ) {
-        try {
-            return resolveRequest(
-                { ...context, originModulePath: path.join(projectRoot, 'index.js') },
-                moduleName,
-                platform,
-            );
-        } catch {
-            // Not available to the app; fall back to the clone's own node_modules.
-        }
-    }
     const resolved = customResolveRequest(context, moduleName, platform);
     if (resolved?.type !== 'sourceFile') return resolved;
     const stub = buildStubs[resolved.filePath];

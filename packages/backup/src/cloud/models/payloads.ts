@@ -59,7 +59,7 @@ export const isChainBackupKind = (type: string): type is ChainBackupKind =>
 /** Any `type` an account or secrets item carries. */
 export type BackupItemKind = BackupAccountType | ChainBackupKind
 
-export const backupHardwareTransportTypeSchema = z.enum(['ble', 'usb'])
+export const backupHardwareTransportTypeSchema = z.enum(['ble', 'usb', 'ipc'])
 export type BackupHardwareTransportType = z.infer<
     typeof backupHardwareTransportTypeSchema
 >

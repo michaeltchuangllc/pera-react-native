@@ -24,6 +24,11 @@ const mocks = vi.hoisted(() => ({
     setShouldPlayConfetti: vi.fn(),
     exitAccountFlow: vi.fn(),
     errorToast: vi.fn(),
+    requestSeedVaultPermission: vi.fn(),
+}))
+
+vi.mock('../seedVaultPermission', () => ({
+    requestSeedVaultPermission: mocks.requestSeedVaultPermission,
 }))
 
 vi.mock('@algorandfoundation/react-native-seed-vault', () => ({
@@ -63,6 +68,7 @@ describe('useSeedVaultImport', () => {
     beforeEach(() => {
         vi.clearAllMocks()
         mocks.bind.mockResolvedValue(true)
+        mocks.requestSeedVaultPermission.mockResolvedValue(true)
         mocks.findAccountByAddressOn.mockReturnValue({ id: 'saved' })
     })
 
@@ -82,7 +88,8 @@ describe('useSeedVaultImport', () => {
         expect(mocks.addHardwareChainAccount).toHaveBeenCalledTimes(2)
         expect(mocks.addHardwareChainAccount).toHaveBeenCalledWith(
             expect.objectContaining({
-                manufacturer: 'seedvault',
+                manufacturer: 'seed-vault-service',
+                transportType: 'ipc',
                 deviceId: '14',
                 deviceName: 'Seed 14',
                 accountIndex: 0,
@@ -118,6 +125,16 @@ describe('useSeedVaultImport', () => {
 
         expect(mocks.addHardwareChainAccount).not.toHaveBeenCalled()
         expect(mocks.exitAccountFlow).not.toHaveBeenCalled()
+    })
+
+    it('does not bind to the service when the permission is denied', async () => {
+        mocks.requestSeedVaultPermission.mockResolvedValue(false)
+        const { result } = renderHook(() => useSeedVaultImport())
+
+        await act(() => result.current.handleImportSeedVault())
+
+        expect(mocks.bind).not.toHaveBeenCalled()
+        expect(mocks.addHardwareChainAccount).not.toHaveBeenCalled()
     })
 
     it('shows an error when the service fails', async () => {

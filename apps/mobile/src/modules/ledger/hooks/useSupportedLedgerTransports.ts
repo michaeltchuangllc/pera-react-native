@@ -70,7 +70,16 @@ export const useSupportedLedgerTransports =
         }, [allLedgerProviders])
 
         const supportedTransportTypes = useMemo(
-            () => [...new Set(supportedProviders.map(p => p.transportType))],
+            () => [
+                ...new Set(
+                    supportedProviders
+                        .map(p => p.transportType)
+                        .filter(
+                            (type): type is LedgerTransportType =>
+                                type !== 'ipc',
+                        ),
+                ),
+            ],
             [supportedProviders],
         )
 

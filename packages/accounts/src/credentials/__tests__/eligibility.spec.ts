@@ -458,6 +458,36 @@ describe('findHardwareHolder', () => {
         ).toBe('usb')
     })
 
+    test('keeps IPC accounts at the same index apart by device id', () => {
+        const ipc = { ...device, transportType: 'ipc' as const }
+        const seed = (id: string, deviceId: string) =>
+            buildTestAccount(
+                {
+                    kind: 'hardware',
+                    device: { ...ipc, deviceId },
+                    accountIndex: 0,
+                },
+                { [ETHEREUM]: { address: EVM_KEY_ADDRESS } },
+                { id },
+            )
+        const accounts = [seed('seed-1', '1'), seed('seed-2', '2')]
+
+        expect(
+            findHardwareHolder(accounts, {
+                ...ipc,
+                deviceId: '2',
+                accountIndex: 0,
+            })?.id,
+        ).toBe('seed-2')
+        expect(
+            findHardwareHolder(accounts, {
+                ...ipc,
+                deviceId: '3',
+                accountIndex: 0,
+            }),
+        ).toBeUndefined()
+    })
+
     test('keeps transports apart at the same id and index', () => {
         const usb = { ...device, transportType: 'usb' as const }
         const usbLedger = buildTestAccount(

@@ -12,7 +12,7 @@
 
 import type {
     HardwareWalletManufacturer,
-    LedgerTransportType,
+    HardwareWalletTransportType,
 } from '@perawallet/wallet-core-hardware-wallet'
 import type { AccountChains, AccountCustody } from './credentials'
 
@@ -25,7 +25,7 @@ export type HardwareWalletDetails = {
     /** Sequential account index on the hardware wallet device (0, 1, 2...) */
     accountIndex: number
     /** Transport used to reach the device. */
-    transportType: LedgerTransportType
+    transportType: HardwareWalletTransportType
 }
 
 export type WalletAccount = {

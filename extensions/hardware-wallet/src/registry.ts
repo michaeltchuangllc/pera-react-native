@@ -14,7 +14,7 @@ import type { Optional } from '@perawallet/wallet-core-shared'
 import type {
     HardwareWalletManufacturer,
     HardwareWalletTransportProvider,
-    LedgerTransportType,
+    HardwareWalletTransportType,
 } from './types'
 
 /**
@@ -29,7 +29,7 @@ export type HardwareWalletRegistry = {
     /** Look up the provider for a given (manufacturer, transportType). Returns undefined if not registered. */
     getProvider: (
         manufacturer: HardwareWalletManufacturer,
-        transportType: LedgerTransportType,
+        transportType: HardwareWalletTransportType,
     ) => Optional<HardwareWalletTransportProvider>
     /** Return all registered providers. */
     getAllProviders: () => HardwareWalletTransportProvider[]
@@ -40,13 +40,13 @@ export type HardwareWalletRegistry = {
     /** Check if a provider is registered for a (manufacturer, transportType). */
     hasProvider: (
         manufacturer: HardwareWalletManufacturer,
-        transportType: LedgerTransportType,
+        transportType: HardwareWalletTransportType,
     ) => boolean
 }
 
 const buildKey = (
     manufacturer: HardwareWalletManufacturer,
-    transportType: LedgerTransportType,
+    transportType: HardwareWalletTransportType,
 ): string => `${manufacturer}:${transportType}`
 
 /**

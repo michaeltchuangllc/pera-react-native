@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@algorandfoundation/react-native-passkey-autofill": "catalog:",
-    "@algorandfoundation/react-native-seed-vault": "link:../../../wallet-provider-extensions/seed-vault/react-native",
+    "@algorandfoundation/react-native-seed-vault": "https://github.com/michaeltchuangllc/wallet-provider-extensions.git#seedvault-dist&path:/seed-vault/react-native",
     "@craftzdog/react-native-buffer": "^6.1.1",
     "@expensify/react-native-wallet": "catalog:",
     "@expo/app-integrity": "catalog:",

@@ -28,9 +28,10 @@ import { ALGORAND_CHAIN_ID } from '@modules/algorand/chain-id'
 import { useLanguage } from '@hooks/useLanguage'
 import { useToast } from '@hooks/useToast'
 import { useExitAccountFlow } from './useExitAccountFlow'
+import { requestSeedVaultPermission } from './seedVaultPermission'
 import { useShouldPlayConfetti } from './useOnboardingStore'
 
-export const SEED_VAULT_MANUFACTURER = 'seedvault'
+export const SEED_VAULT_MANUFACTURER = 'seed-vault-service'
 
 const FIRST_ACCOUNT_INDEX = 0
 
@@ -48,6 +49,7 @@ export const useSeedVaultImport = (): UseSeedVaultImportResult => {
 
     const handleImportSeedVault = useCallback(async () => {
         try {
+            if (!(await requestSeedVaultPermission())) return
             await bind()
             let seeds = await getAuthorizedSeeds()
             if (seeds.length === 0) {
@@ -74,15 +76,15 @@ export const useSeedVaultImport = (): UseSeedVaultImportResult => {
             }
 
             for (const { seed, address } of firstAccounts) {
-                // Seed Vault is an on-device signing service reached like a
-                // wired device, so it takes the 'usb' transport slot.
+                // Not 'usb': a USB position ignores deviceId, so two seeds
+                // would collapse into one account.
                 addHardwareChainAccount(
                     {
                         manufacturer: SEED_VAULT_MANUFACTURER,
                         deviceId: String(seed.id),
                         deviceName: seed.name,
                         accountIndex: FIRST_ACCOUNT_INDEX,
-                        transportType: 'usb',
+                        transportType: 'ipc',
                     },
                     ALGORAND_CHAIN_ID,
                     address,

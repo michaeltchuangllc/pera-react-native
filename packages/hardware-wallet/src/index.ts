@@ -24,6 +24,7 @@ export {
     type HardwareWalletRegistry,
     type HardwareWalletTransport,
     type HardwareWalletTransportProvider,
+    type HardwareWalletTransportType,
     type LedgerTransportType,
 } from '@perawallet/wallet-extension-hardware-wallet'
 export * from './constants'

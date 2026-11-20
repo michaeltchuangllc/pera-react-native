@@ -18,6 +18,13 @@ export type HardwareWalletManufacturer = 'ledger' | (string & {})
 /** 'ble' (Bluetooth) or 'usb' (Android USB host / HID). */
 export type LedgerTransportType = 'ble' | 'usb'
 
+/**
+ * Every way a hardware wallet account's signer is reached. `'ipc'` is Android
+ * bound-service IPC to an on-device signer (Seed Vault Service), which is not
+ * a Ledger transport, so Ledger-only screens keep using `LedgerTransportType`.
+ */
+export type HardwareWalletTransportType = LedgerTransportType | 'ipc'
+
 export type HardwareWalletDevice = {
     /** Platform-specific. */
     id: string
@@ -123,7 +130,7 @@ export type HardwareWalletTransport = {
 export type HardwareWalletTransportProvider = {
     manufacturer: HardwareWalletManufacturer
 
-    transportType: LedgerTransportType
+    transportType: HardwareWalletTransportType
 
     /** Returns a stop function. */
     scan: (
