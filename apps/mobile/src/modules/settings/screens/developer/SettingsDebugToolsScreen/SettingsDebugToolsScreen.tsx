@@ -49,7 +49,12 @@ export const SettingsDebugToolsScreen = () => {
             <PWListItem
                 onPress={() => handleNavigate('SeedVault')}
                 icon='shield-check'
-                title='Seed Vault'
+                title='Algorand Seed Vault'
+            />
+            <PWListItem
+                onPress={() => handleNavigate('SolanaSeedVault')}
+                icon='shield-check'
+                title='Solana Seed Vault'
             />
             <PWListItem
                 onPress={handleOpenTestingDapp}

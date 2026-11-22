@@ -27,3 +27,14 @@ export const bind = async () => false
 export const unbind = () => undefined
 export const authorizeApp = async () => false
 export const getAuthorizedSeeds = async () => []
+
+export const solana = {
+    isSupported: () => false,
+    isInstalled: () => false,
+    hasUnauthorizedSeeds: () => false,
+    getPermission: () => '',
+    getAuthorizedSeeds: async () => [],
+    authorizeSeed: async () => 0,
+    signMessage: async () => null,
+    signTransaction: async () => null,
+}

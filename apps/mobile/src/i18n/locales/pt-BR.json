@@ -2534,10 +2534,10 @@
             "pair_ledger_title": "Parear com Ledger",
             "pair_ledger_description": "Gerencie suas contas por meio de um dispositivo Ledger pareado",
             "pair_ledger_unsupported_description": "Não compatível com este navegador ou dispositivo",
-            "seed_vault_title": "Importar do Seed Vault",
+            "seed_vault_title": "Importar do Algorand Seed Vault",
             "seed_vault_description": "Adicione a primeira conta de cada seed autorizado",
-            "seed_vault_error_title": "Seed Vault indisponível",
-            "seed_vault_error_body": "Autorize o Pera no Seed Vault e tente novamente.",
+            "seed_vault_error_title": "Algorand Seed Vault indisponível",
+            "seed_vault_error_body": "Autorize o Pera no Algorand Seed Vault e tente novamente.",
             "pera_web_title": "Recuperar da wallet web legada",
             "pera_web_description": "Importe uma wallet Algorand do Pera Web",
             "cloud_backup_title": "Recuperar do backup na nuvem",
@@ -3009,7 +3009,8 @@
         "debug_tools": "Ferramentas de depuração",
         "manage_cache": "Gerenciar cache",
         "app_integrity": "Integridade do app",
-        "seed_vault": "Seed Vault",
+        "seed_vault": "Algorand Seed Vault",
+        "solana_seed_vault": "Solana Seed Vault",
         "messages": "Mensagens"
     },
     "search": {

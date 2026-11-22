@@ -2522,10 +2522,10 @@
             "pair_ledger_title": "Mit Ledger koppeln",
             "pair_ledger_description": "Verwalte deine Konten über ein gekoppeltes Ledger-Gerät",
             "pair_ledger_unsupported_description": "Von diesem Browser oder Gerät nicht unterstützt",
-            "seed_vault_title": "Aus Seed Vault importieren",
+            "seed_vault_title": "Aus Algorand Seed Vault importieren",
             "seed_vault_description": "Füge das erste Konto jedes autorisierten Seeds hinzu",
-            "seed_vault_error_title": "Seed Vault nicht verfügbar",
-            "seed_vault_error_body": "Autorisiere Pera in Seed Vault und versuche es erneut.",
+            "seed_vault_error_title": "Algorand Seed Vault nicht verfügbar",
+            "seed_vault_error_body": "Autorisiere Pera in Algorand Seed Vault und versuche es erneut.",
             "pera_web_title": "Aus Legacy-Web-Wallet wiederherstellen",
             "pera_web_description": "Algorand-Wallet aus Pera Web importieren",
             "cloud_backup_title": "Aus Cloud-Backup wiederherstellen",
@@ -2985,7 +2985,8 @@
         "debug_tools": "Debug-Tools",
         "manage_cache": "Cache verwalten",
         "app_integrity": "App-Integrität",
-        "seed_vault": "Seed Vault",
+        "seed_vault": "Algorand Seed Vault",
+        "solana_seed_vault": "Solana Seed Vault",
         "messages": "Nachrichten"
     },
     "search": {

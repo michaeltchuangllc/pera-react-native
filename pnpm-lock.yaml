@@ -632,8 +632,8 @@ importers:
         specifier: 'catalog:'
         version: 1.0.0-canary.29(patch_hash=c2c95c3534ffef165f1885347e43cd0b577b19ea4cfc41f8b940b61395adb336)(491e11d8cde9ac80bd5ebc27a4c8202f)
       '@algorandfoundation/react-native-seed-vault':
-        specifier: https://github.com/michaeltchuangllc/wallet-provider-extensions.git#seedvault-dist&path:/seed-vault/react-native
-        version: https://codeload.github.com/michaeltchuangllc/wallet-provider-extensions/tar.gz/483e60cd6adfa89daa3f1677764c0065f66b7047#path:/seed-vault/react-native(expo-modules-core@58.0.24(react-native-worklets@0.13.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))
+        specifier: https://github.com/mithiraj95/wallet-provider-extensions.git#pera-integration-seedvault-dist&path:/seed-vault/react-native
+        version: https://codeload.github.com/mithiraj95/wallet-provider-extensions/tar.gz/3f152186b595c247dcabf631b340912e3293a6f1#path:/seed-vault/react-native(expo-modules-core@58.0.24(react-native-worklets@0.13.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))
       '@craftzdog/react-native-buffer':
         specifier: ^6.1.1
         version: 6.1.2(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)
@@ -4780,8 +4780,8 @@ packages:
       react: 19.3.0
       react-native: 0.88.0
 
-  '@algorandfoundation/react-native-seed-vault@https://codeload.github.com/michaeltchuangllc/wallet-provider-extensions/tar.gz/483e60cd6adfa89daa3f1677764c0065f66b7047#path:/seed-vault/react-native':
-    resolution: {path: /seed-vault/react-native, tarball: https://codeload.github.com/michaeltchuangllc/wallet-provider-extensions/tar.gz/483e60cd6adfa89daa3f1677764c0065f66b7047}
+  '@algorandfoundation/react-native-seed-vault@https://codeload.github.com/mithiraj95/wallet-provider-extensions/tar.gz/3f152186b595c247dcabf631b340912e3293a6f1#path:/seed-vault/react-native':
+    resolution: {path: /seed-vault/react-native, tarball: https://codeload.github.com/mithiraj95/wallet-provider-extensions/tar.gz/3f152186b595c247dcabf631b340912e3293a6f1}
     version: 0.0.0
     peerDependencies:
       expo-modules-core: '*'
@@ -12044,7 +12044,7 @@ snapshots:
       - react-native-nitro-modules
       - react-native-quick-base64
 
-  '@algorandfoundation/react-native-seed-vault@https://codeload.github.com/michaeltchuangllc/wallet-provider-extensions/tar.gz/483e60cd6adfa89daa3f1677764c0065f66b7047#path:/seed-vault/react-native(expo-modules-core@58.0.24(react-native-worklets@0.13.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))':
+  '@algorandfoundation/react-native-seed-vault@https://codeload.github.com/mithiraj95/wallet-provider-extensions/tar.gz/3f152186b595c247dcabf631b340912e3293a6f1#path:/seed-vault/react-native(expo-modules-core@58.0.24(react-native-worklets@0.13.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))':
     dependencies:
       '@scure/base': 2.4.0
       expo-modules-core: 58.0.24(react-native-worklets@0.13.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7)(@react-native/metro-config@0.88.0(@babel/core@7.29.7))(@types/react@19.3.0)(react@19.3.0))(react@19.3.0)

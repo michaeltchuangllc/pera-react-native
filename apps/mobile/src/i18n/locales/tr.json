@@ -2530,10 +2530,10 @@
             "pair_ledger_title": "Ledger ile eşleştir",
             "pair_ledger_description": "Hesaplarını eşleştirilmiş bir Ledger cihazıyla yönet",
             "pair_ledger_unsupported_description": "Bu tarayıcı veya cihaz tarafından desteklenmiyor",
-            "seed_vault_title": "Seed Vault'tan İçe Aktar",
+            "seed_vault_title": "Algorand Seed Vault'tan İçe Aktar",
             "seed_vault_description": "Yetkilendirilen her seed'in ilk hesabını ekle",
-            "seed_vault_error_title": "Seed Vault kullanılamıyor",
-            "seed_vault_error_body": "Pera'yı Seed Vault'ta yetkilendirip tekrar dene.",
+            "seed_vault_error_title": "Algorand Seed Vault kullanılamıyor",
+            "seed_vault_error_body": "Pera'yı Algorand Seed Vault'ta yetkilendirip tekrar dene.",
             "pera_web_title": "Eski web cüzdanından kurtar",
             "pera_web_description": "Pera Web’den Algorand cüzdanı içe aktar",
             "cloud_backup_title": "Bulut yedeklemeden kurtar",
@@ -2993,7 +2993,8 @@
         "debug_tools": "Hata ayıklama araçları",
         "manage_cache": "Önbelleği yönet",
         "app_integrity": "Uygulama bütünlüğü",
-        "seed_vault": "Seed Vault",
+        "seed_vault": "Algorand Seed Vault",
+        "solana_seed_vault": "Solana Seed Vault",
         "messages": "Mesajlar"
     },
     "search": {

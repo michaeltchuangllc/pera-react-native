@@ -27,7 +27,7 @@ import {
     signBytes,
     signTransaction,
     unbind,
-    type SeedVaultSeed,
+    type AlgorandSeedVaultSeed,
 } from '@algorandfoundation/react-native-seed-vault'
 // Debug-only: builds a throwaway unsigned payment to exercise the signer
 /* oxlint-disable pera/no-algorand-sdk-imports */
@@ -54,7 +54,7 @@ const preview = (bytes: Nullable<Uint8Array>) =>
 export type UseSettingsDeveloperSeedVaultResult = {
     isAvailable: boolean
     isBusy: boolean
-    seeds: SeedVaultSeed[]
+    seeds: AlgorandSeedVaultSeed[]
     selectedAddress: Nullable<string>
     log: string[]
     onSelectAddress: (address: string) => void
@@ -72,7 +72,7 @@ export type UseSettingsDeveloperSeedVaultResult = {
 export const useSettingsDeveloperSeedVault =
     (): UseSettingsDeveloperSeedVaultResult => {
         const [isBusy, setIsBusy] = useState(false)
-        const [seeds, setSeeds] = useState<SeedVaultSeed[]>([])
+        const [seeds, setSeeds] = useState<AlgorandSeedVaultSeed[]>([])
         const [selectedAddress, setSelectedAddress] =
             useState<Nullable<string>>(null)
         const [log, setLog] = useState<string[]>([])

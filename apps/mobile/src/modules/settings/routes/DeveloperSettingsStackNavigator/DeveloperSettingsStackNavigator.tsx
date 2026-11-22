@@ -29,6 +29,7 @@ import { SettingsDeveloperMigrationInfoScreen } from '../../screens/developer/Se
 import { SettingsDeveloperMigrationSimulatorScreen } from '../../screens/developer/SettingsDeveloperMigrationSimulatorScreen'
 import { SettingsDeveloperKeystoreMigrationsScreen } from '../../screens/developer/SettingsDeveloperKeystoreMigrationsScreen'
 import { SettingsDeveloperSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSeedVaultScreen'
+import { SettingsDeveloperSolanaSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSolanaSeedVaultScreen'
 
 import type { GalleryCategoryId } from '@modules/settings/screens/developer/gallery-catalog'
 
@@ -47,6 +48,7 @@ export type DeveloperSettingsStackParamsList = {
     MigrationSimulator: undefined
     KeystoreMigrations: undefined
     SeedVault: undefined
+    SolanaSeedVault: undefined
 }
 
 const DeveloperSettingsStack =
@@ -107,6 +109,13 @@ export const DeveloperSettingsStackNavigator = () => {
                     title: 'screens.seed_vault',
                 }}
                 component={SettingsDeveloperSeedVaultScreen}
+            />
+            <DeveloperSettingsStack.Screen
+                name='SolanaSeedVault'
+                options={{
+                    title: 'screens.solana_seed_vault',
+                }}
+                component={SettingsDeveloperSolanaSeedVaultScreen}
             />
             <DeveloperSettingsStack.Screen
                 name='AppIntegrity'
