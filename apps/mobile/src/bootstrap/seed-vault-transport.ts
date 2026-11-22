@@ -15,7 +15,9 @@ import {
     getAuthorizedSeeds,
     isSupported,
     signTransaction,
+    solana,
 } from '@algorandfoundation/react-native-seed-vault'
+import { base58 } from '@scure/base'
 import { SEED_VAULT_MANUFACTURER } from '@perawallet/wallet-core-hardware-wallet'
 import type {
     HardwareWalletRegistry,
@@ -61,12 +63,47 @@ const createTransport = (deviceId: string): HardwareWalletTransport => ({
     disconnect: async () => undefined,
 })
 
+const SOLANA_CHAIN_ID = 'solana'
+
+const solanaAccountOf = async (deviceId: string, accountIndex: number) => {
+    const seed = (await solana.getAuthorizedSeeds()).find(
+        ({ authToken }) => String(authToken) === deviceId,
+    )
+    const account = seed?.accounts[accountIndex]
+    if (!account) {
+        throw new Error('The Seed Vault account is no longer authorized')
+    }
+    return account
+}
+
+const createSolanaTransport = (deviceId: string): HardwareWalletTransport => ({
+    getAddress: async accountIndex => {
+        const { address } = await solanaAccountOf(deviceId, accountIndex)
+        return { address, publicKey: base58.decode(address), accountIndex }
+    },
+    // Resolves to the bare 64-byte Ed25519 signature over the message.
+    signTransaction: async (accountIndex, payload) => {
+        const { address } = await solanaAccountOf(deviceId, accountIndex)
+        const signature = await solana.signTransaction(address, payload)
+        if (!signature) throw new Error('Seed Vault signing was not approved')
+        return signature
+    },
+    signMessage: async () => {
+        throw new Error('Seed Vault message signing is not supported')
+    },
+    getAppVersion: async () => ({ major: 0, minor: 0, patch: 0 }),
+    disconnect: async () => undefined,
+})
+
 const seedVaultTransportProvider: HardwareWalletTransportProvider = {
     manufacturer: SEED_VAULT_MANUFACTURER,
     transportType: 'ipc',
     // Seeds are chosen in the Seed Vault's own UI, never scanned for.
     scan: () => () => undefined,
-    connect: async deviceId => createTransport(deviceId),
+    connect: async (deviceId, chainId) =>
+        chainId === SOLANA_CHAIN_ID
+            ? createSolanaTransport(deviceId)
+            : createTransport(deviceId),
     isSupported: async () => isSupported(),
 }
 

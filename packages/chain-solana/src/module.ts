@@ -15,26 +15,45 @@ import { assetsChainAdapters } from '@perawallet/wallet-core-assets'
 import {
     CHAIN_CAPABILITIES,
     addressCodecs,
+    transactionPlanners,
+    transactionReviewers,
     type ChainCapabilities,
     type ChainModule,
 } from '@perawallet/wallet-core-chain-contract'
+import {
+    broadcasterChainAdapters,
+    reviewerChainAdapters,
+} from '@perawallet/wallet-core-signing'
+import { transferChainAdapters } from '@perawallet/wallet-core-transactions'
 import { createSolanaAccountsAdapter } from './accounts-adapter'
 import { solanaAssetsAdapter } from './assets-adapter'
 import { solanaAddressCodec } from './address-codec'
+import { createSolanaBroadcasterAdapter } from './broadcaster'
 import { solanaDescriptor } from './descriptor'
+import { solanaPlanner } from './planner'
+import { solanaReviewer, solanaSigningReviewer } from './reviewer'
+import { createSolanaTransferAdapter } from './transfer-adapter'
 
-// Only hardware-backed account import exists so far; every feature is off.
-const capabilityDefaults = Object.fromEntries(
-    CHAIN_CAPABILITIES.map(capability => [capability, false]),
-) as ChainCapabilities
+// Hardware-backed import, balance and native SOL send; every other feature is off.
+const capabilityDefaults = {
+    ...(Object.fromEntries(
+        CHAIN_CAPABILITIES.map(capability => [capability, false]),
+    ) as ChainCapabilities),
+    send: true,
+}
 
 export const solanaModule: ChainModule = {
     descriptor: solanaDescriptor,
     capabilityDefaults,
-    supportedCapabilities: [],
+    supportedCapabilities: ['send'],
     register: ctx => {
         accountsChainAdapters.register(createSolanaAccountsAdapter(ctx))
         addressCodecs.register(solanaAddressCodec)
         assetsChainAdapters.register(solanaAssetsAdapter)
+        transactionPlanners.register(solanaPlanner)
+        transactionReviewers.register(solanaReviewer)
+        reviewerChainAdapters.register(solanaSigningReviewer)
+        transferChainAdapters.register(createSolanaTransferAdapter(ctx))
+        broadcasterChainAdapters.register(createSolanaBroadcasterAdapter(ctx))
     },
 }

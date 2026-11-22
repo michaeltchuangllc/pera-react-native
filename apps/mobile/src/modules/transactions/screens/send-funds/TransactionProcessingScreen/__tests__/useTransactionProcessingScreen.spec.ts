@@ -63,6 +63,7 @@ vi.mock('@perawallet/wallet-core-hardware-wallet', async importOriginal => ({
     ...(await importOriginal<
         typeof import('@perawallet/wallet-core-hardware-wallet')
     >()),
+    hasLedgerAppDriver: () => true,
     ledgerAppNameFor: (chainId: string) =>
         chainId === 'ethereum' ? 'Ethereum' : 'Algorand',
 }))

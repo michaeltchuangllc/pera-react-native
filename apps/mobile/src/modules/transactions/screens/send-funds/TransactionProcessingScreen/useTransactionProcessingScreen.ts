@@ -39,7 +39,10 @@ import {
     toError,
     type Nullable,
 } from '@perawallet/wallet-core-shared'
-import { ledgerAppNameFor } from '@perawallet/wallet-core-hardware-wallet'
+import {
+    hasLedgerAppDriver,
+    ledgerAppNameFor,
+} from '@perawallet/wallet-core-hardware-wallet'
 import { getChainDescriptor } from '@perawallet/wallet-core-chain-shared'
 import { useNavigation } from '@react-navigation/native'
 import type { StackNavigationProp } from '@react-navigation/stack'
@@ -291,7 +294,10 @@ export const useTransactionProcessingScreen =
             : null
 
         const ledgerAppName = useMemo(
-            () => (isHardwareSender ? ledgerAppNameFor(scope.chainId) : null),
+            () =>
+                isHardwareSender && hasLedgerAppDriver(scope.chainId)
+                    ? ledgerAppNameFor(scope.chainId)
+                    : null,
             [isHardwareSender, scope.chainId],
         )
 

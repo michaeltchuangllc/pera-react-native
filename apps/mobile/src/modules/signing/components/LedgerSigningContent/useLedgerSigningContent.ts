@@ -19,7 +19,10 @@ import {
     type HardwareChildSnapshot,
     type HardwareSigningOperation,
 } from '@perawallet/wallet-core-signing'
-import { ledgerAppNameFor } from '@perawallet/wallet-core-hardware-wallet'
+import {
+    hasLedgerAppDriver,
+    ledgerAppNameFor,
+} from '@perawallet/wallet-core-hardware-wallet'
 import type { Nullable } from '@perawallet/wallet-core-shared'
 import { useLanguage } from '@hooks/useLanguage'
 import {
@@ -128,7 +131,10 @@ export const useLedgerSigningContent = (): UseLedgerSigningContentResult => {
 
     const signingChainId = hardware?.context.scope.chainId ?? null
     const ledgerAppName = useMemo(
-        () => (signingChainId ? ledgerAppNameFor(signingChainId) : null),
+        () =>
+            signingChainId && hasLedgerAppDriver(signingChainId)
+                ? ledgerAppNameFor(signingChainId)
+                : null,
         [signingChainId],
     )
 
