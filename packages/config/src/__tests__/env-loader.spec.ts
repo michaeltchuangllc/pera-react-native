@@ -308,6 +308,7 @@ describe('env-loader', () => {
             remoteConfigRefreshTime: 3600000,
             chainRequestTimeouts: {
                 algorand: { readMs: 10000, submitMs: 30000 },
+                solana: { readMs: 10000, submitMs: 30000 },
                 ...(Object.fromEntries(
                     EVM_CHAIN_IDS.map(chainId => [
                         chainId,

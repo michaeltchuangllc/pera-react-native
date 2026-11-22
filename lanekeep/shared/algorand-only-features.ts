@@ -176,7 +176,7 @@ export const ALGORAND_ONLY_FEATURES: readonly AlgorandOnlyFeature[] = [
         'apps/mobile/src/modules/settings/screens/developer/gallery-catalog/sheets.catalog.tsx',
     ]),
     ...entries(SEED_VAULT, [
-        'apps/mobile/src/modules/onboarding/hooks/useSeedVaultImport.ts',
+        'apps/mobile/src/modules/onboarding/hooks/algorandSeedVaultSource.ts',
     ]),
     ...entries(ARBITRARY_DATA, [
         'apps/mobile/src/modules/signing/components/ArbitraryDataSigningView/ArbitraryDataSigningDetailsView.tsx',

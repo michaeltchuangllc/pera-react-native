@@ -28,6 +28,7 @@ import { SettingsDeveloperMigrationViewerScreen } from '../../screens/developer/
 import { SettingsDeveloperMigrationInfoScreen } from '../../screens/developer/SettingsDeveloperMigrationInfoScreen'
 import { SettingsDeveloperMigrationSimulatorScreen } from '../../screens/developer/SettingsDeveloperMigrationSimulatorScreen'
 import { SettingsDeveloperKeystoreMigrationsScreen } from '../../screens/developer/SettingsDeveloperKeystoreMigrationsScreen'
+import { SettingsDeveloperSelectSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSelectSeedVaultScreen'
 import { SettingsDeveloperSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSeedVaultScreen'
 import { SettingsDeveloperSolanaSeedVaultScreen } from '../../screens/developer/SettingsDeveloperSolanaSeedVaultScreen'
 
@@ -47,6 +48,7 @@ export type DeveloperSettingsStackParamsList = {
     MigrationInfo: undefined
     MigrationSimulator: undefined
     KeystoreMigrations: undefined
+    SelectSeedVault: undefined
     SeedVault: undefined
     SolanaSeedVault: undefined
 }
@@ -102,6 +104,13 @@ export const DeveloperSettingsStackNavigator = () => {
                     title: 'screens.manage_cache',
                 }}
                 component={SettingsDeveloperManageCacheScreen}
+            />
+            <DeveloperSettingsStack.Screen
+                name='SelectSeedVault'
+                options={{
+                    title: 'screens.select_seed_vault',
+                }}
+                component={SettingsDeveloperSelectSeedVaultScreen}
             />
             <DeveloperSettingsStack.Screen
                 name='SeedVault'

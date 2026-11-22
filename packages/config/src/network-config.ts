@@ -44,6 +44,7 @@ export type EvmChainConfig = {
 // getChainConfig compiling.
 type ChainConfigByChain = {
     algorand: AlgorandChainConfig
+    solana: EvmChainConfig
 } & Record<EvmChainId, EvmChainConfig>
 
 export type ChainConfig = ChainConfigByChain[ChainId]
@@ -309,6 +310,7 @@ const evmEndpoints = (): Record<EvmChainId, ChainEndpoints> => {
 
 const CHAIN_ENDPOINTS: Record<ChainId, ChainEndpoints> = {
     algorand: {},
+    solana: {},
     ...evmEndpoints(),
 }
 

@@ -47,14 +47,9 @@ export const SettingsDebugToolsScreen = () => {
                 title='Keystore Migrations'
             />
             <PWListItem
-                onPress={() => handleNavigate('SeedVault')}
+                onPress={() => handleNavigate('SelectSeedVault')}
                 icon='shield-check'
-                title='Algorand Seed Vault'
-            />
-            <PWListItem
-                onPress={() => handleNavigate('SolanaSeedVault')}
-                icon='shield-check'
-                title='Solana Seed Vault'
+                title={t('settings.developer.seed_vault')}
             />
             <PWListItem
                 onPress={handleOpenTestingDapp}

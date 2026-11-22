@@ -13,6 +13,9 @@
 import { makeStyles } from '@rneui/themed'
 
 export const useStyles = makeStyles(theme => ({
+    scrollContent: {
+        paddingHorizontal: theme.spacing.xl,
+    },
     contentContainer: {
         paddingTop: theme.spacing.md,
         paddingBottom: theme.spacing.md,

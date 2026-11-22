@@ -31,6 +31,7 @@ const CHAIN_ICONS: Record<
 > = {
     algorand: algorandChainIcon,
     evm: ethereumChainIcon,
+    solana: () => undefined,
 }
 
 export type UseChainIconResult = {

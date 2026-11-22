@@ -69,6 +69,7 @@ export type ChainAccountNative =
           }
       }
     | { family: 'evm' }
+    | { family: 'solana' }
 
 /**
  * Holding data only its own chain reads, persisted on the holding row; one
@@ -80,6 +81,7 @@ export type ChainHoldingNative =
           isFrozen: boolean
       }
     | { family: 'evm' }
+    | { family: 'solana' }
 
 /**
  * Asset data only its own chain reads, persisted on the asset's node row; one
@@ -91,6 +93,7 @@ export type ChainAssetData =
           creatorAddress: string
       }
     | { family: 'evm' }
+    | { family: 'solana' }
 
 /**
  * Attempt data only its own chain reads, persisted on the submission attempt;
@@ -106,6 +109,7 @@ export type ChainSubmissionData =
           lastValid: number
       }
     | { family: 'evm' }
+    | { family: 'solana' }
 
 export type AccountChainState =
     | {
@@ -125,6 +129,7 @@ export type AccountChainState =
           /** Newest block a received-token history scan has read up to; absent until a scan finishes. */
           tokenScanBlock?: number
       }
+    | { family: 'solana' }
 
 export interface AccountState {
     address: string
@@ -250,6 +255,7 @@ export type ChainTransactionData =
               collectionName?: string
           }
       }
+    | { family: 'solana' }
 
 /** Payment-link fields only the parsing chain reads; each family adds a member discriminated by `family`. */
 export type ChainPaymentData = {

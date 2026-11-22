@@ -38,6 +38,7 @@ const NATIVE_ASSET_ICONS: Record<
 > = {
     algorand: algorandNativeAssetIcon,
     evm: ethereumNativeAssetIcon,
+    solana: () => undefined,
 }
 
 // EVM has none: the bundled font only carries the Algo mark.

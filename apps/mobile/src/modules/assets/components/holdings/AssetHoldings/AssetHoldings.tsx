@@ -11,7 +11,13 @@
  */
 
 import type { ChainScope } from '@perawallet/wallet-core-chain-contract'
-import { PWIcon, PWTouchableOpacity, PWView } from '@components/core'
+import {
+    PWIcon,
+    PWScrollView,
+    PWTouchableOpacity,
+    PWView,
+} from '@components/core'
+import { useChainCapability } from '@perawallet/wallet-core-chain-shared'
 import { AssetWealthChart } from '../AssetWealthChart/AssetWealthChart'
 import { ChartPeriodSelection } from '@components/ChartPeriodSelection'
 import { AssetActionButtons } from '../AssetActionButtons/AssetActionButtons'
@@ -46,6 +52,7 @@ export const AssetHoldings = ({
     isCollectible,
 }: AssetHoldingsProps) => {
     const styles = useStyles()
+    const hasHistory = useChainCapability(scope.chainId, 'history')
     const {
         assetHolding,
         holdingAmount,
@@ -87,12 +94,8 @@ export const AssetHoldings = ({
         />
     )
 
-    return (
-        <AssetTransactionList
-            account={account}
-            asset={asset}
-            scope={scope}
-        >
+    const content = (
+        <>
             <PWView style={styles.contentContainer}>
                 <PWView
                     style={styles.header}
@@ -210,6 +213,23 @@ export const AssetHoldings = ({
                     isCollectible={isCollectible}
                 />
             </PWView>
+        </>
+    )
+
+    if (!hasHistory)
+        return (
+            <PWScrollView contentContainerStyle={styles.scrollContent}>
+                {content}
+            </PWScrollView>
+        )
+
+    return (
+        <AssetTransactionList
+            account={account}
+            asset={asset}
+            scope={scope}
+        >
+            {content}
         </AssetTransactionList>
     )
 }

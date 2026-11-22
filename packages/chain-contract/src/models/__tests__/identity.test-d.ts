@@ -30,8 +30,11 @@ describe('ChainId', () => {
             | 'arbitrum'
             | 'avalanche'
             | 'polygon'
+            | 'solana'
         >()
-        expectTypeOf<ChainFamily>().toEqualTypeOf<'algorand' | 'evm'>()
+        expectTypeOf<ChainFamily>().toEqualTypeOf<
+            'algorand' | 'evm' | 'solana'
+        >()
     })
 })
 
@@ -46,7 +49,9 @@ describe('EvmChainId', () => {
     it('is a chain id, and never algorand', () => {
         expectTypeOf<EvmChainId>().toExtend<ChainId>()
         expectTypeOf<'algorand'>().not.toExtend<EvmChainId>()
-        expectTypeOf<Exclude<ChainId, EvmChainId>>().toEqualTypeOf<'algorand'>()
+        expectTypeOf<Exclude<ChainId, EvmChainId>>().toEqualTypeOf<
+            'algorand' | 'solana'
+        >()
     })
 })
 

@@ -23,6 +23,7 @@ import type {
     SerializedLedgerAccount,
     SerializedLedgerSelectableAccount,
 } from '@modules/ledger'
+import type { SeedVaultChain, SeedVaultSeed } from '../hooks/seedVaultTypes'
 
 /**
  * Where to go after an account is created + named, instead of the default
@@ -152,6 +153,9 @@ export type ImportFlowParamList = {
         skippedDuplicateCount: number
         failedCount: number
     }
+    SeedVaultAccountType: undefined
+    SeedVaultSelectSeed: { chain: SeedVaultChain }
+    SeedVaultSelectAccounts: { chain: SeedVaultChain; seed: SeedVaultSeed }
     PeraWebImportInfo: undefined
     PeraWebImportLoading: undefined
     PeraWebImportResult: {

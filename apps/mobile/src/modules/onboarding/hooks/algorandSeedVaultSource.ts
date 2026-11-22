@@ -1,0 +1,40 @@
+/*
+ Copyright 2022-2026 Pera Wallet, LDA
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License
+ */
+
+import {
+    authorizeApp,
+    bind,
+    getAuthorizedSeeds,
+    isSupported,
+} from '@algorandfoundation/react-native-seed-vault'
+import { ALGORAND_CHAIN_ID } from '@modules/algorand/chain-id'
+import { requestSeedVaultPermission } from './seedVaultPermission'
+import type { SeedVaultSource } from './seedVaultTypes'
+
+export const algorandSeedVaultSource: SeedVaultSource = {
+    chainId: ALGORAND_CHAIN_ID,
+    isSupported,
+    loadSeeds: async () => {
+        if (!(await requestSeedVaultPermission())) return null
+        await bind()
+        const seeds = await getAuthorizedSeeds()
+        return seeds.map(seed => ({
+            id: String(seed.id),
+            name: seed.name,
+            // Only the first account is offered until multi-account import is enabled.
+            accounts: seed.accounts
+                .filter(({ index }) => index === 0)
+                .map(({ index, address }) => ({ index, address })),
+        }))
+    },
+    authorizeSeed: authorizeApp,
+}

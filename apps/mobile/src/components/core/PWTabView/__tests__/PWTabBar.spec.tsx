@@ -67,6 +67,26 @@ describe('PWTabBar', () => {
         expect(getAllByText('Second Tab')[0]).toBeTruthy()
     })
 
+    it('renders nothing for a single tab', () => {
+        const { queryByText } = render(
+            <PWTabBar
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                state={{ index: 0, routes: [mockState.routes[0]] } as any}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                descriptors={mockDescriptors as any}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                navigation={mockNavigation as any}
+                position={mockPosition}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                layout={{ width: 300, height: 50 } as any}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                jumpTo={vi.fn() as any}
+            />,
+        )
+
+        expect(queryByText('First Tab')).toBeNull()
+    })
+
     it('handles tab press', () => {
         const { getAllByText } = render(
             <PWTabBar

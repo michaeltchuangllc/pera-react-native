@@ -42,7 +42,7 @@ describe('isChainFamily', () => {
         expect(isChainFamily(family)).toBe(true)
     })
 
-    it.each(['', 'Algorand', 'ethereum', 'solana'])('rejects %j', value => {
+    it.each(['', 'Algorand', 'ethereum', 'dogecoin'])('rejects %j', value => {
         expect(isChainFamily(value)).toBe(false)
     })
 

@@ -52,7 +52,10 @@ import {
     type LedgerTransportOptionsContentResult,
 } from '../../components/LedgerTransportOptionsContent'
 import { useIsOnboarding } from '../../hooks/useOnboardingStore'
-import { useSeedVaultImport } from '../../hooks/useSeedVaultImport'
+import {
+    isSeedVaultChainSupported,
+    SEED_VAULT_CHAINS,
+} from '../../hooks/seedVaultSources'
 import { usePrivateKeyImportChainId } from '../../hooks/usePrivateKeyImportChainId'
 import type { ImportFlowParamList } from '../../routes/types'
 import { trackChainOnboardingEvent } from '../../utils'
@@ -104,8 +107,12 @@ export const useImportAccountOptionsScreen =
         const isCloudBackupConfigured = useCloudBackupStore(state =>
             state.isConfigured(),
         )
-        const { isSeedVaultSupported, handleImportSeedVault } =
-            useSeedVaultImport()
+        const isSeedVaultSupported = SEED_VAULT_CHAINS.some(
+            isSeedVaultChainSupported,
+        )
+        const handleImportSeedVault = useCallback(() => {
+            navigation.push('SeedVaultAccountType')
+        }, [navigation])
         const privateKeyChainId = usePrivateKeyImportChainId()
         const [isOtherOptionsVisible, setIsOtherOptionsVisible] =
             useState(false)
@@ -390,9 +397,7 @@ export const useImportAccountOptionsScreen =
                                 'onboarding.import_account_options.seed_vault_description',
                             ),
                             leftIcon: 'shield-check' as IconName,
-                            onPress: () => {
-                                void handleImportSeedVault()
-                            },
+                            onPress: handleImportSeedVault,
                         },
                     ] satisfies (AccountOption | false)[]
                 ).filter((option): option is AccountOption => !!option),

@@ -2530,10 +2530,12 @@
             "pair_ledger_title": "Ledger ile eşleştir",
             "pair_ledger_description": "Hesaplarını eşleştirilmiş bir Ledger cihazıyla yönet",
             "pair_ledger_unsupported_description": "Bu tarayıcı veya cihaz tarafından desteklenmiyor",
-            "seed_vault_title": "Algorand Seed Vault'tan İçe Aktar",
-            "seed_vault_description": "Yetkilendirilen her seed'in ilk hesabını ekle",
+            "seed_vault_title": "Seed Vault",
+            "seed_vault_description": "Import Algorand or Solana accounts from Seed Vault on this device",
             "seed_vault_error_title": "Algorand Seed Vault kullanılamıyor",
             "seed_vault_error_body": "Pera'yı Algorand Seed Vault'ta yetkilendirip tekrar dene.",
+            "solana_seed_vault_error_title": "Solana Seed Vault unavailable",
+            "solana_seed_vault_error_body": "We couldn't import accounts from Solana Seed Vault. Make sure it is set up and try again.",
             "pera_web_title": "Eski web cüzdanından kurtar",
             "pera_web_description": "Pera Web’den Algorand cüzdanı içe aktar",
             "cloud_backup_title": "Bulut yedeklemeden kurtar",
@@ -2543,6 +2545,34 @@
             "asb_title": "Algorand Secure Backup’tan kurtar",
             "asb_legacy_title": "Eski yedeklemeden kurtar",
             "asb_description": "Bir Algorand Secure Backup dosyası ve 12 kelimelik anahtar ile cüzdanı geri yükle"
+        },
+        "seed_vault": {
+            "account_type": {
+                "title": "Select Account Type",
+                "algorand_title": "Algorand",
+                "algorand_description": "Import Algorand account from Seed Vault",
+                "solana_title": "Solana",
+                "solana_description": "Import Solana account from Seed Vault"
+            },
+            "select_seed": {
+                "title": "Select Seed",
+                "authorize": "Authorize another seed",
+                "default_name": "Seed {{number}}",
+                "empty": "No seeds found. Please create a seed in the Seed Vault app first.",
+                "refresh": "Refresh"
+            },
+            "select_accounts": {
+                "title": "Select {{chain}} accounts to add",
+                "description_one": "Select the addresses you want to import ({{count}} address)",
+                "description_other": "Select the addresses you want to import ({{count}} addresses)",
+                "address_count_one": "{{count}} address",
+                "address_count_other": "{{count}} addresses",
+                "select_all": "Select all",
+                "imported": "Already imported",
+                "cta": "Continue",
+                "error_title": "Couldn't import accounts",
+                "error_body": "Something went wrong while adding the selected accounts. Please try again."
+            }
         },
         "ledger_transport_options": {
             "title": "Ledger ile eşleştir",
@@ -2995,6 +3025,7 @@
         "app_integrity": "Uygulama bütünlüğü",
         "seed_vault": "Algorand Seed Vault",
         "solana_seed_vault": "Solana Seed Vault",
+        "select_seed_vault": "Select Seed Vault",
         "messages": "Mesajlar"
     },
     "search": {
@@ -3355,6 +3386,7 @@
                 "endpoint_reset": "Yapılandırılmış RPC’ye dön"
             },
             "debug_dapp": "Test Dapp",
+            "seed_vault": "Seed Vault",
             "manage_cache": "Önbelleği yönet",
             "screen_gallery": "Ekran galerisi",
             "app_integrity": "Uygulama bütünlüğü",

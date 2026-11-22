@@ -50,6 +50,7 @@ import {
 } from '@perawallet/wallet-core-remote-config'
 import { pinnedHostRegistry } from '@perawallet/wallet-extension-platform'
 import { getProvider } from '@perawallet/wallet-extension-provider'
+import { solanaModule } from '@perawallet/wallet-core-chain-solana'
 import { evmChainModules } from './evm-chain-modules'
 
 const chainContextFor = (entry: ChainSetupEntry): ChainContext => ({
@@ -123,6 +124,7 @@ export const registerChainAdapters = (): void => {
         config.chains,
         {
             algorand: algorandChainModule,
+            solana: solanaModule,
             ...evmChainModules,
         },
         chainEndpointsFor,

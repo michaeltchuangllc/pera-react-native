@@ -40,6 +40,10 @@ export const PWTabBar = ({
     }
 
     const tabCount = state.routes.length
+
+    // Animated interpolation needs at least two input points.
+    if (tabCount < 2) return null
+
     const tabWidth = containerWidth / tabCount
 
     const inputRange = state.routes.map((_, i) => i)

@@ -25,6 +25,7 @@ export const CHAIN_IDS = [
     'arbitrum',
     'avalanche',
     'polygon',
+    'solana',
 ] as const
 
 export type ChainId = (typeof CHAIN_IDS)[number]
@@ -33,7 +34,7 @@ export type ChainId = (typeof CHAIN_IDS)[number]
  * Append only: a contact's backup record is keyed on its first family in this
  * order, so reordering would move every contact to a new key.
  */
-export const CHAIN_FAMILIES = ['algorand', 'evm'] as const
+export const CHAIN_FAMILIES = ['algorand', 'evm', 'solana'] as const
 
 export type ChainFamily = (typeof CHAIN_FAMILIES)[number]
 
@@ -111,6 +112,11 @@ export type NativeNetworkRef =
           kind: 'evm'
           /** EIP-155 chain id. */
           eip155ChainId: number
+      }
+    | {
+          kind: 'solana'
+          /** Base58 genesis hash, whose first 32 characters are the CAIP-2 reference. */
+          genesisHash: string
       }
 
 export interface ChainNetwork {

@@ -34,6 +34,9 @@ import { AsbImportBackupScreen } from '@modules/onboarding/screens/AsbImportBack
 import { AsbImportKeyScreen } from '@modules/onboarding/screens/AsbImportKeyScreen'
 import { AsbImportSelectAccountsScreen } from '@modules/onboarding/screens/AsbImportSelectAccountsScreen'
 import { AsbImportResultScreen } from '@modules/onboarding/screens/AsbImportResultScreen'
+import { SeedVaultAccountTypeScreen } from '@modules/onboarding/screens/SeedVaultAccountTypeScreen'
+import { SeedVaultSelectSeedScreen } from '@modules/onboarding/screens/SeedVaultSelectSeedScreen'
+import { SeedVaultSelectAccountsScreen } from '@modules/onboarding/screens/SeedVaultSelectAccountsScreen'
 import { PeraWebImportInfoScreen } from '@modules/onboarding/screens/PeraWebImportInfoScreen'
 import { PeraWebImportLoadingScreen } from '@modules/onboarding/screens/PeraWebImportLoadingScreen'
 import { PeraWebImportResultScreen } from '@modules/onboarding/screens/PeraWebImportResultScreen'
@@ -119,6 +122,15 @@ const AsbImportSelectAccountsScreenWithErrorBoundary = withAccountErrorBoundary(
 const AsbImportResultScreenWithErrorBoundary = withAccountErrorBoundary(
     AsbImportResultScreen,
 )
+const SeedVaultAccountTypeScreenWithErrorBoundary = withAccountErrorBoundary(
+    SeedVaultAccountTypeScreen,
+)
+const SeedVaultSelectSeedScreenWithErrorBoundary = withAccountErrorBoundary(
+    SeedVaultSelectSeedScreen,
+)
+const SeedVaultSelectAccountsScreenWithErrorBoundary = withAccountErrorBoundary(
+    SeedVaultSelectAccountsScreen,
+)
 const PeraWebImportInfoScreenWithErrorBoundary = withAccountErrorBoundary(
     PeraWebImportInfoScreen,
 )
@@ -163,6 +175,9 @@ export const IMPORT_FLOW_SCREEN_NAMES = [
     'AsbImportKey',
     'AsbImportSelectAccounts',
     'AsbImportResult',
+    'SeedVaultAccountType',
+    'SeedVaultSelectSeed',
+    'SeedVaultSelectAccounts',
     'PeraWebImportInfo',
     'PeraWebImportLoading',
     'PeraWebImportResult',
@@ -318,6 +333,21 @@ export const renderImportFlowScreens = (
                 component={AsbImportResultScreenWithErrorBoundary}
             />
         )}
+        <Stack.Screen
+            name='SeedVaultAccountType'
+            options={{ title: '' }}
+            component={SeedVaultAccountTypeScreenWithErrorBoundary}
+        />
+        <Stack.Screen
+            name='SeedVaultSelectSeed'
+            options={{ title: '' }}
+            component={SeedVaultSelectSeedScreenWithErrorBoundary}
+        />
+        <Stack.Screen
+            name='SeedVaultSelectAccounts'
+            options={{ title: '' }}
+            component={SeedVaultSelectAccountsScreenWithErrorBoundary}
+        />
         <Stack.Screen
             name='PeraWebImportInfo'
             options={{ title: '' }}

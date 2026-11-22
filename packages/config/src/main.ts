@@ -512,6 +512,7 @@ const productionConfig: Omit<
     remoteConfigRefreshTime: ONE_HOUR,
     chainRequestTimeouts: {
         algorand: { readMs: TEN_SECONDS, submitMs: THIRTY_SECONDS },
+        solana: { readMs: TEN_SECONDS, submitMs: THIRTY_SECONDS },
         // One request carries a JSON-RPC batch of up to 100 calls, so reads get
         // more room than a single algod GET.
         ...(Object.fromEntries(

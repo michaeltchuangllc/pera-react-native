@@ -19,7 +19,8 @@ import { getConstants } from '@algorandfoundation/react-native-seed-vault'
 // to it is denied until the user grants it at runtime; declaring it in the
 // manifest is not enough.
 export const requestSeedVaultPermission = async (): Promise<boolean> => {
-    const permission = `${getConstants().PACKAGE}.ACCESS_SEED_VAULT` as Permission
+    const permission =
+        `${getConstants().PACKAGE}.ACCESS_SEED_VAULT` as Permission
     if (await PermissionsAndroid.check(permission)) return true
     const result = await PermissionsAndroid.request(permission)
     return result === PermissionsAndroid.RESULTS.GRANTED

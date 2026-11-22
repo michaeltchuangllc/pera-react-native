@@ -2522,10 +2522,12 @@
             "pair_ledger_title": "Mit Ledger koppeln",
             "pair_ledger_description": "Verwalte deine Konten über ein gekoppeltes Ledger-Gerät",
             "pair_ledger_unsupported_description": "Von diesem Browser oder Gerät nicht unterstützt",
-            "seed_vault_title": "Aus Algorand Seed Vault importieren",
-            "seed_vault_description": "Füge das erste Konto jedes autorisierten Seeds hinzu",
+            "seed_vault_title": "Seed Vault",
+            "seed_vault_description": "Import Algorand or Solana accounts from Seed Vault on this device",
             "seed_vault_error_title": "Algorand Seed Vault nicht verfügbar",
             "seed_vault_error_body": "Autorisiere Pera in Algorand Seed Vault und versuche es erneut.",
+            "solana_seed_vault_error_title": "Solana Seed Vault unavailable",
+            "solana_seed_vault_error_body": "We couldn't import accounts from Solana Seed Vault. Make sure it is set up and try again.",
             "pera_web_title": "Aus Legacy-Web-Wallet wiederherstellen",
             "pera_web_description": "Algorand-Wallet aus Pera Web importieren",
             "cloud_backup_title": "Aus Cloud-Backup wiederherstellen",
@@ -2535,6 +2537,34 @@
             "asb_title": "Aus Algorand Secure Backup wiederherstellen",
             "asb_legacy_title": "Aus Legacy-Backup wiederherstellen",
             "asb_description": "Wallet mit einer Algorand Secure Backup-Datei und einem 12-Wort-Schlüssel wiederherstellen"
+        },
+        "seed_vault": {
+            "account_type": {
+                "title": "Select Account Type",
+                "algorand_title": "Algorand",
+                "algorand_description": "Import Algorand account from Seed Vault",
+                "solana_title": "Solana",
+                "solana_description": "Import Solana account from Seed Vault"
+            },
+            "select_seed": {
+                "title": "Select Seed",
+                "authorize": "Authorize another seed",
+                "default_name": "Seed {{number}}",
+                "empty": "No seeds found. Please create a seed in the Seed Vault app first.",
+                "refresh": "Refresh"
+            },
+            "select_accounts": {
+                "title": "Select {{chain}} accounts to add",
+                "description_one": "Select the addresses you want to import ({{count}} address)",
+                "description_other": "Select the addresses you want to import ({{count}} addresses)",
+                "address_count_one": "{{count}} address",
+                "address_count_other": "{{count}} addresses",
+                "select_all": "Select all",
+                "imported": "Already imported",
+                "cta": "Continue",
+                "error_title": "Couldn't import accounts",
+                "error_body": "Something went wrong while adding the selected accounts. Please try again."
+            }
         },
         "ledger_transport_options": {
             "title": "Mit Ledger koppeln",
@@ -2987,6 +3017,7 @@
         "app_integrity": "App-Integrität",
         "seed_vault": "Algorand Seed Vault",
         "solana_seed_vault": "Solana Seed Vault",
+        "select_seed_vault": "Select Seed Vault",
         "messages": "Nachrichten"
     },
     "search": {
@@ -3347,6 +3378,7 @@
                 "endpoint_reset": "Auf konfigurierten RPC zurücksetzen"
             },
             "debug_dapp": "Test-Dapp",
+            "seed_vault": "Seed Vault",
             "manage_cache": "Cache verwalten",
             "screen_gallery": "Bildschirmgalerie",
             "app_integrity": "App-Integrität",

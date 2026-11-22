@@ -29,6 +29,7 @@ const DISCOVER_NETWORK_OF: Record<
 > = {
     algorand: (d, selected) => d.networks.find(n => n.id === selected),
     evm: d => defaultNetworkForTier(d, 'mainnet'),
+    solana: d => defaultNetworkForTier(d, 'mainnet'),
 }
 
 export const discoverCaip2Of = (
