@@ -63,7 +63,10 @@ export const useSeedVaultSeeds = (
         (error: unknown) => {
             logger.warn('Seed Vault request failed', { chain, error })
             const { errorToast: toast, t: translate } = notifyRef.current
-            toast(translate(ERROR_KEYS[chain].title), translate(ERROR_KEYS[chain].body))
+            toast(
+                translate(ERROR_KEYS[chain].title),
+                translate(ERROR_KEYS[chain].body),
+            )
         },
         [chain],
     )
