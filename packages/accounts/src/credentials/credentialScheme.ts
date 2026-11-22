@@ -63,8 +63,10 @@ export const credentialScheme = (
         case 'hardware': {
             // The vault signs Falcon-1024, which costs the post-quantum fee premium.
             return custody.device.manufacturer === SEED_VAULT_MANUFACTURER &&
+                // lanekeep-ignore-next-line pera/no-algorand-terms-in-chain-neutral-packages reason: 'falcon-1024' is the persisted SigningScheme id
                 chain.signing.schemes.includes('falcon-1024')
-                ? 'falcon-1024'
+                ? // lanekeep-ignore-next-line pera/no-algorand-terms-in-chain-neutral-packages reason: 'falcon-1024' is the persisted SigningScheme id
+                  'falcon-1024'
                 : primary
         }
         case 'multisig': {

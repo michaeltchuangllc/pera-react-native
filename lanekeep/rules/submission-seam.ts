@@ -9,6 +9,7 @@ import { TEST_SUPPORT, productionSource } from '../shared/scope.js'
 export const BROADCASTER_OWNERS = [
     'packages/chain-algorand/src',
     'packages/chain-ethereum/src',
+    'packages/chain-solana/src',
 ] as const
 
 const SUBMISSION_NAMES = [

@@ -258,6 +258,7 @@ export default defineRule({
         pathNotMatches: [
             `**/packages/chain-{${CHAIN_IDS.join(',')}}/**`,
             '**/packages/chain-contract/src/models/identity.ts',
+            '**/packages/chain-solana/**',
             ...TEST_SUPPORT,
             ...COMPOSITION_ROOTS.map(root => root.glob),
         ],
