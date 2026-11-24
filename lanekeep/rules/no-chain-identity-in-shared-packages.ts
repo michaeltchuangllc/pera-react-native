@@ -219,6 +219,21 @@ const ALLOWED: readonly Allowed[] = [
         reason: "Bidali's payment-currency code, not a ChainId.",
     },
     {
+        file: 'apps/mobile/src/modules/settings/screens/developer/SettingsDeveloperNodeSettingsScreen/useSettingsDeveloperNodeSettingsScreen.tsx',
+        text: "descriptor.family === 'algorand'",
+        reason: "Groups the dev-mode node settings screen's own TestNet/BetaNet/Custom picker, which stays shared by exactly these two families regardless of how many chain packages exist.",
+    },
+    {
+        file: 'apps/mobile/src/modules/settings/screens/developer/SettingsDeveloperNodeSettingsScreen/useSettingsDeveloperNodeSettingsScreen.tsx',
+        text: "'algorand'",
+        reason: "Groups the dev-mode node settings screen's own TestNet/BetaNet/Custom picker, which stays shared by exactly these two families regardless of how many chain packages exist.",
+    },
+    {
+        file: 'apps/mobile/src/modules/settings/screens/developer/SettingsDeveloperNodeSettingsScreen/useSettingsDeveloperNodeSettingsScreen.tsx',
+        text: "descriptor.family === 'solana'",
+        reason: "Groups the dev-mode node settings screen's own TestNet/BetaNet/Custom picker, which stays shared by exactly these two families regardless of how many chain packages exist.",
+    },
+    {
         file: 'packages/swaps/src/execution/steps.ts',
         text: 'step.scope.chainId !== chainId',
         reason: "Keeps an order's steps on whichever chain the caller passes, never a named chain.",

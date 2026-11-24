@@ -270,8 +270,7 @@ export const useSettingsDeveloperNodeSettingsScreen =
                         row => row.networkId === networkId,
                     )
                         ? networkId
-                        : section.networks.find(row => row.isDefault)
-                              ?.networkId
+                        : section.networks.find(row => row.isDefault)?.networkId
                     if (target !== undefined) {
                         selectNetworkInStore(section.chainId, target)
                     }
