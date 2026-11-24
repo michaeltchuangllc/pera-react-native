@@ -23,8 +23,11 @@ export const SettingsDeveloperNodeSettingsScreen = () => {
     const {
         isDeveloperMode,
         setDeveloperMode,
-        chainSections,
+        networkRows,
+        primaryChainId,
+        otherChainSections,
         selectNetwork,
+        selectChainNetwork,
         openEndpointOverride,
     } = useSettingsDeveloperNodeSettingsScreen()
 
@@ -60,9 +63,14 @@ export const SettingsDeveloperNodeSettingsScreen = () => {
             {isDeveloperMode && (
                 <>
                     <NodeSettingsChainNetworks
-                        chainSections={chainSections}
+                        sharedChainId={primaryChainId}
+                        networkRows={networkRows}
+                        otherChainSections={otherChainSections}
+                        onSelectShared={networkId =>
+                            void selectNetwork(networkId)
+                        }
                         onSelect={(chainId, networkId) =>
-                            void selectNetwork(chainId, networkId)
+                            void selectChainNetwork(chainId, networkId)
                         }
                         onOverrideEndpoint={(chainId, networkId) =>
                             void openEndpointOverride(chainId, networkId)

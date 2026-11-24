@@ -49,6 +49,8 @@ export type NodeSettingsNetworkRow = {
 export type NodeSettingsChainSection = {
     chainId: ChainId
     chainName: string
+    /** Algorand and Solana share one TestNet/BetaNet/Custom choice; other chains list their own. */
+    isShared: boolean
     networks: NodeSettingsNetworkRow[]
 }
 
@@ -57,7 +59,15 @@ type UseSettingsDeveloperNodeSettingsScreenResult = {
     setDeveloperMode: (isEnabled: boolean) => void
     /** Empty in live mode, where every chain is on its main network. */
     chainSections: NodeSettingsChainSection[]
-    selectNetwork: (chainId: ChainId, networkId: NetworkId) => Promise<void>
+    /** One list shared by every chain: the first chain's networks, which each other chain maps onto. */
+    networkRows: NodeSettingsNetworkRow[]
+    primaryChainId: Optional<ChainId>
+    otherChainSections: NodeSettingsChainSection[]
+    selectNetwork: (networkId: NetworkId) => Promise<void>
+    selectChainNetwork: (
+        chainId: ChainId,
+        networkId: NetworkId,
+    ) => Promise<void>
     openEndpointOverride: (
         chainId: ChainId,
         networkId: NetworkId,
@@ -167,6 +177,9 @@ export const useSettingsDeveloperNodeSettingsScreen =
                 return {
                     chainId: descriptor.id,
                     chainName: descriptor.displayName,
+                    isShared:
+                        descriptor.family === 'algorand' ||
+                        descriptor.family === 'solana',
                     networks,
                 }
             })
@@ -180,6 +193,24 @@ export const useSettingsDeveloperNodeSettingsScreen =
             t,
         ])
 
+        const sharedSections = useMemo(
+            () => chainSections.filter(section => section.isShared),
+            [chainSections],
+        )
+        // The shared list spans chains, so one chain's node host would mislead.
+        const networkRows = useMemo(
+            () =>
+                (sharedSections[0]?.networks ?? []).map(row => ({
+                    ...row,
+                    endpointHost: undefined,
+                })),
+            [sharedSections],
+        )
+        const otherChainSections = useMemo(
+            () => chainSections.filter(section => !section.isShared),
+            [chainSections],
+        )
+
         const setDeveloperMode = useCallback(
             (isEnabled: boolean) => {
                 setMode(isEnabled ? 'developer' : 'live')
@@ -188,7 +219,7 @@ export const useSettingsDeveloperNodeSettingsScreen =
             [setMode],
         )
 
-        const selectNetwork = useCallback(
+        const selectChainNetwork = useCallback(
             async (chainId: ChainId, networkId: NetworkId) => {
                 // Custom has no baked endpoints: the chain's form is the only
                 // path that commits it.
@@ -215,6 +246,41 @@ export const useSettingsDeveloperNodeSettingsScreen =
             [request, selectNetworkInStore],
         )
 
+        // A shared chain without the chosen network stays on its default test
+        // network (Solana keeps Devnet while Algorand is on BetaNet).
+        const selectNetwork = useCallback(
+            async (networkId: NetworkId) => {
+                const customChainId =
+                    networkId === CUSTOM_NETWORK_ID
+                        ? sharedSections.find(section =>
+                              section.networks.some(
+                                  row => row.networkId === CUSTOM_NETWORK_ID,
+                              ),
+                          )?.chainId
+                        : undefined
+                if (networkId === CUSTOM_NETWORK_ID) {
+                    if (customChainId !== undefined) {
+                        await selectChainNetwork(customChainId, networkId)
+                    }
+                    return
+                }
+
+                for (const section of sharedSections) {
+                    const target = section.networks.some(
+                        row => row.networkId === networkId,
+                    )
+                        ? networkId
+                        : section.networks.find(row => row.isDefault)
+                              ?.networkId
+                    if (target !== undefined) {
+                        selectNetworkInStore(section.chainId, target)
+                    }
+                }
+                restartSync()
+            },
+            [sharedSections, selectChainNetwork, selectNetworkInStore],
+        )
+
         const openEndpointOverride = useCallback(
             async (chainId: ChainId, networkId: NetworkId) => {
                 await request({
@@ -234,7 +300,11 @@ export const useSettingsDeveloperNodeSettingsScreen =
             isDeveloperMode,
             setDeveloperMode,
             chainSections,
+            networkRows,
+            primaryChainId: sharedSections[0]?.chainId,
+            otherChainSections,
             selectNetwork,
+            selectChainNetwork,
             openEndpointOverride,
         }
     }

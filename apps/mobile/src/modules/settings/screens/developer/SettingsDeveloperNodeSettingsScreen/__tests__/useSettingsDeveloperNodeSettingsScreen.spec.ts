@@ -244,7 +244,7 @@ describe('useSettingsDeveloperNodeSettingsScreen', () => {
             mocks.restart.mockClear()
 
             await act(async () => {
-                await result.current.selectNetwork('algorand', 'custom')
+                await result.current.selectNetwork('custom')
             })
 
             expect(mocks.requestBottomSheet).toHaveBeenCalledOnce()
@@ -262,7 +262,10 @@ describe('useSettingsDeveloperNodeSettingsScreen', () => {
             act(() => result.current.setDeveloperMode(true))
 
             await act(async () => {
-                await result.current.selectNetwork(ETHEREUM_CHAIN_ID, 'custom')
+                await result.current.selectChainNetwork(
+                    ETHEREUM_CHAIN_ID,
+                    'custom',
+                )
             })
 
             expect(mocks.requestBottomSheet).not.toHaveBeenCalled()
@@ -370,7 +373,7 @@ describe('useSettingsDeveloperNodeSettingsScreen', () => {
             mocks.restart.mockClear()
 
             await act(async () => {
-                await result.current.selectNetwork('algorand', 'betanet')
+                await result.current.selectNetwork('betanet')
             })
 
             expect(getSelectedScope(ALGORAND_CHAIN_ID).networkId).toBe(
@@ -384,15 +387,35 @@ describe('useSettingsDeveloperNodeSettingsScreen', () => {
             expect(mocks.restart).toHaveBeenCalledOnce()
         })
 
+        it('leaves chains outside the shared list on their own selection', async () => {
+            registerEthereum(false)
+            const { result } = renderScreenHook()
+            act(() => result.current.setDeveloperMode(true))
+
+            await act(async () => {
+                await result.current.selectNetwork('betanet')
+            })
+
+            expect(getSelectedScope(ALGORAND_CHAIN_ID).networkId).toBe(
+                'betanet',
+            )
+            expect(getSelectedScope(ETHEREUM_CHAIN_ID).networkId).toBe(
+                'sepolia',
+            )
+            expect(
+                result.current.otherChainSections.map(s => s.chainId),
+            ).toEqual([ETHEREUM_CHAIN_ID])
+        })
+
         it('returns Algorand to the default by selecting TestNet again', async () => {
             const { result } = renderScreenHook()
             act(() => result.current.setDeveloperMode(true))
             await act(async () => {
-                await result.current.selectNetwork('algorand', 'betanet')
+                await result.current.selectNetwork('betanet')
             })
 
             await act(async () => {
-                await result.current.selectNetwork('algorand', 'testnet')
+                await result.current.selectNetwork('testnet')
             })
 
             expect(getSelectedScope(ALGORAND_CHAIN_ID).networkId).toBe(
@@ -404,7 +427,7 @@ describe('useSettingsDeveloperNodeSettingsScreen', () => {
             const { result } = renderScreenHook()
             act(() => result.current.setDeveloperMode(true))
             await act(async () => {
-                await result.current.selectNetwork('algorand', 'betanet')
+                await result.current.selectNetwork('betanet')
             })
 
             act(() => result.current.setDeveloperMode(false))

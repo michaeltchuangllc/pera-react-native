@@ -12,18 +12,28 @@
 
 import { PWText, PWView } from '@components/core'
 import type { ChainId, NetworkId } from '@perawallet/wallet-core-chain-contract'
+import type { Optional } from '@perawallet/wallet-core-shared'
 import { NodeSettingsRow } from './NodeSettingsRow'
-import type { NodeSettingsChainSection } from './useSettingsDeveloperNodeSettingsScreen'
+import type {
+    NodeSettingsChainSection,
+    NodeSettingsNetworkRow,
+} from './useSettingsDeveloperNodeSettingsScreen'
 import { useStyles } from './styles'
 
 export type NodeSettingsChainNetworksProps = {
-    chainSections: NodeSettingsChainSection[]
+    sharedChainId: Optional<ChainId>
+    networkRows: NodeSettingsNetworkRow[]
+    otherChainSections: NodeSettingsChainSection[]
+    onSelectShared: (networkId: NetworkId) => void
     onSelect: (chainId: ChainId, networkId: NetworkId) => void
     onOverrideEndpoint: (chainId: ChainId, networkId: NetworkId) => void
 }
 
 export const NodeSettingsChainNetworks = ({
-    chainSections,
+    sharedChainId,
+    networkRows,
+    otherChainSections,
+    onSelectShared,
     onSelect,
     onOverrideEndpoint,
 }: NodeSettingsChainNetworksProps) => {
@@ -34,16 +44,25 @@ export const NodeSettingsChainNetworks = ({
             style={styles.chainNetworks}
             testID='node_settings_chain_networks'
         >
-            {chainSections.map(section => (
+            {sharedChainId !== undefined &&
+                networkRows.map(row => (
+                    <NodeSettingsRow
+                        key={row.networkId}
+                        chainId={sharedChainId}
+                        row={row}
+                        onSelect={() => onSelectShared(row.networkId)}
+                        onOverrideEndpoint={() =>
+                            onOverrideEndpoint(sharedChainId, row.networkId)
+                        }
+                    />
+                ))}
+            {otherChainSections.map(section => (
                 <PWView
                     key={section.chainId}
-                    style={styles.chainSection}
+                    style={styles.chainNetworks}
                     testID={`node_settings_chain_${section.chainId}`}
                 >
-                    {/* With one chain the heading would only repeat the screen's subject. */}
-                    {chainSections.length > 1 && (
-                        <PWText variant='h4'>{section.chainName}</PWText>
-                    )}
+                    <PWText variant='h4'>{section.chainName}</PWText>
                     {section.networks.map(row => (
                         <NodeSettingsRow
                             key={row.networkId}

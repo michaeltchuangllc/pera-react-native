@@ -45,10 +45,6 @@ export const useStyles = makeStyles(theme => {
             gap: theme.spacing.sm,
             marginTop: theme.spacing.xl,
         },
-        chainSection: {
-            flexDirection: 'column',
-            gap: theme.spacing.sm,
-        },
         modeRow: {
             flexDirection: 'row',
             alignItems: 'center',
