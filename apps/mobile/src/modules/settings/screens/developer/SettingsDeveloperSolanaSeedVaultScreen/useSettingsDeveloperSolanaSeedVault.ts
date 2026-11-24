@@ -21,7 +21,7 @@ type SolanaSeedVaultSeed = Awaited<
     ReturnType<typeof solana.getAuthorizedSeeds>
 >[number]
 
-const MESSAGE = new TextEncoder().encode('Mithilesh')
+const MESSAGE = new TextEncoder().encode('Seed Vault')
 const BASE58_ALPHABET =
     '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
 

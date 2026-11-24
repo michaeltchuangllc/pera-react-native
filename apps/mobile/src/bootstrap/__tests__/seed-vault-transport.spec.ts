@@ -23,7 +23,7 @@ vi.mock('@algorandfoundation/react-native-seed-vault', () => vault)
 
 import { registerSeedVaultTransport } from '../seed-vault-transport'
 
-const ADDRESS = 'V3CWLWEH5GX6X2UM3FLUQM62LEXNZDTFWHHJW23P435OEM77REK7ZXFVUQ'
+const ADDRESS = 'TEST_VAULT_ADDRESS'
 
 const connect = async () => {
     const registry = createHardwareWalletRegistry()

@@ -100,7 +100,7 @@ export const SettingsDeveloperSeedVaultScreen = () => {
                 <PWView style={styles.section}>
                     <PWButton
                         variant='secondary'
-                        title='Sign bytes ("Mithilesh")'
+                        title='Sign bytes ("Seed Vault")'
                         onPress={onSignBytes}
                         isDisabled={isBusy}
                     />

@@ -38,7 +38,7 @@ import {
 /* oxlint-enable pera/no-algorand-sdk-imports */
 import { toError, type Nullable } from '@perawallet/wallet-core-shared'
 
-const MESSAGE = new TextEncoder().encode('Mithilesh')
+const MESSAGE = new TextEncoder().encode('Seed Vault')
 const DERIVE_INFO = new TextEncoder().encode('pera-debug')
 const TESTNET_GENESIS_HASH = Uint8Array.from(
     atob('SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI='),

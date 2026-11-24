@@ -98,7 +98,7 @@ export const SettingsDeveloperSolanaSeedVaultScreen = () => {
                 <PWView style={styles.section}>
                     <PWButton
                         variant='secondary'
-                        title='Sign message ("Mithilesh")'
+                        title='Sign message ("Seed Vault")'
                         onPress={onSignMessage}
                         isDisabled={isBusy}
                     />
